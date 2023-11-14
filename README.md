@@ -1,41 +1,49 @@
+# Нулевой шаг. Поднять django+postgers+gunicorn+nginx
+
+## Зависимосоти
 Обновление пакетов
-
+```sh
 sudo apt update
-
+```
 установка пакетов 
-
+```sh
 sudo apt install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx curl
-
-# Создадим БД и аккаунт в PostgreSQL
-
+```
+## Создадим БД и аккаунт в PostgreSQL
+```sh
 sudo -u postgres psql
-
+```
+```sh
 CREATE DATABASE myproject;
-
+```
+```sh
 CREATE USER root WITH PASSWORD 'password';
-
+```
 Чтобы упростить дальнейшую работу, сразу зададим ряд настроек. Например, изменим кодировку на UTF-8, зададим схему изоляции транзакций «read committed», установим часовой пояс:
+```sh
 ALTER ROLE root SET client_encoding TO 'utf8';
 ALTER ROLE root SET default_transaction_isolation TO 'read committed';
 ALTER ROLE root SET timezone TO 'UTC';
-
+```
 Теперь для нового пользователя надо открыть доступ на администрирование БД:
+```sh
 GRANT ALL PRIVILEGES ON DATABASE myproject TO root;
-
+```
 выход
+```sh
 \q
+```
 
 
-# Создадим виртуальную среду Python
+## Создадим виртуальную среду Python
 
-...
 
 Теперь пришло время для установки Django, Gunicorn и адаптера psycopg2 PostgreSQL:
 ```sh
 pip install django gunicorn psycopg2-binary
 ```
 
-#Сделаем свой проект Django и настроим его
+## Сделаем свой проект Django и настроим его
 
 Нахожусь я в папке `www-data`
 ````sh
@@ -71,7 +79,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 ```
 
-# Завершим задачу настройки
+## Завершим задачу настройки
 
 Миграции
 ```sh
@@ -108,7 +116,7 @@ python3 manage.py runserver 0.0.0.0:8000
 http://localhost:8000/
 ```
 
-# Файлы сокета и systemd для Gunicorn
+## Файлы сокета и systemd для Gunicorn
 
 `gunicorn.service` в папке `/etc/systemd/system`
 ```sh
@@ -164,7 +172,7 @@ sudo systemctl status gunicorn.socket
 sudo journalctl -u gunicorn
 ```
 
-# Nginx как прокси для Gunicorn
+## Nginx как прокси для Gunicorn
 
 Создать и открыть модуль
 ```sh
