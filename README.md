@@ -1,6 +1,6 @@
 # Нулевой шаг. Поднять django+postgers+gunicorn+nginx
 
-## Зависимосоти
+## Зависимости
 Обновление пакетов
 ```sh
 sudo apt update
@@ -46,7 +46,8 @@ pip install django gunicorn psycopg2-binary
 ## Сделаем свой проект Django и настроим его
 
 Нахожусь я в папке `www-data`
-````sh
+
+```sh
 django-admin startproject django_server /home/danil/www-data/
 ```
 
