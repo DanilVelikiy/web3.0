@@ -219,7 +219,38 @@ https://timeweb.cloud/tutorials/django/kak-ustanovit-django-nginx-i-gunicorn-na-
 
 # Первый шаг. Поднять титульную страничку.
 
-Склонировать из гита титульную страницу в соответствующую папку в проекте
+Склонировать из гита титульную страницу в соответствующую папку в проекте.
+Структура папок тогда примет вид:
+```sh
+.
+├── bd_backup
+│   └── pgsql.dump
+├── django_server
+│   ├── asgi.py
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── settings.py
+│   ├── templates
+│   ├── urls.py
+│   └── wsgi.py
+├── manage.py
+├── README.md
+├── static
+│   └── admin
+├── venv
+│   ├── bin
+│   ├── include
+│   ├── lib
+│   ├── lib64 -> lib
+│   ├── pyvenv.cfg
+│   └── share
+└── web_titul
+    ├── css
+    ├── images
+    ├── index.html
+    └── js
+
+```
 И сконфигурировать nginx 
 ```sh
 sudo nvim /etc/nginx/sites-available/www-data
