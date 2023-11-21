@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+<h1>{{ project.title }}</h1>
+<div class="row"></div></div>
+<div class="row">
+    <div class="col-md-4">
+        <h5>About the project:</h5>
+        <p>{{ project.description }}</p>
+        <br>
+        <h5>Technology used:</h5>
+        <p>{{ project.technology }}</p>
+        <h5>Target:</h5>
+        <p>{{ project.target }}</p>
+    </div>
+    <div class="col-md-8">
+        <img src="{% static project.image %}" alt="" width="100%">
+        <h5>Решение:</h5>
+        <p>{{ project.block_1_text }}</p>
+        <img src="{% static project.block_1_image %}" alt="" width="100%">
+        <p>{{ project.block_2_text }}</p>
+        <img src="{% static project.block_2_image %}" alt="" width="100%">
+        <p>{{ project.block_3_text }}</p>
+        <img src="{% static project.block_3_image %}" alt="" width="100%">
+    </div>
+</div>
+{% endblock %}
